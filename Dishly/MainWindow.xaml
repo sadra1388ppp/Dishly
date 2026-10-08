@@ -22,76 +22,38 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Grid>
-                            <Border x:Name="Shell"
-                                    Background="{TemplateBinding Background}"
-                                    CornerRadius="13"
-                                    RenderTransformOrigin="0.5,0.5">
-                                <Border.RenderTransform>
-                                    <ScaleTransform ScaleX="1" ScaleY="1"/>
-                                </Border.RenderTransform>
-                                <Grid>
-                                    <Border x:Name="Indicator"
-                                            Width="3"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Stretch"
-                                            CornerRadius="2"
-                                            Background="{StaticResource Accent}"
-                                            Opacity="0"
-                                            Margin="0,9,0,9"/>
-                                    <ContentPresenter Margin="16,0,12,0"
-                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                      VerticalAlignment="Center"/>
-                                </Grid>
-                            </Border>
-                        </Grid>
-
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" Value="{StaticResource Ink}"/>
-                                <Setter TargetName="Shell" Property="Background" Value="#202722"/>
-                                <Setter TargetName="Indicator" Property="Opacity" Value="1"/>
-
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="Shell"
-                                                         Storyboard.TargetProperty="RenderTransform.ScaleX"
-                                                         To="1.025"
-                                                         Duration="0:0:0.12"/>
-                                        <DoubleAnimation Storyboard.TargetName="Shell"
-                                                         Storyboard.TargetProperty="RenderTransform.ScaleY"
-                                                         To="1.025"
-                                                         Duration="0:0:0.12"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger>
-
-                            <Trigger Property="IsMouseOver" Value="False">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="Shell"
-                                                         Storyboard.TargetProperty="RenderTransform.ScaleX"
-                                                         To="1"
-                                                         Duration="0:0:0.12"/>
-                                        <DoubleAnimation Storyboard.TargetName="Shell"
-                                                         Storyboard.TargetProperty="RenderTransform.ScaleY"
-                                                         To="1"
-                                                         Duration="0:0:0.12"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger>
-
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Shell" Property="Background" Value="#29342D"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
+                        <Border x:Name="Shell"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="13">
+                            <Grid>
+                                <Border x:Name="Indicator"
+                                        Width="3"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Stretch"
+                                        CornerRadius="2"
+                                        Background="{StaticResource Accent}"
+                                        Opacity="0"
+                                        Margin="0,9,0,9"/>
+                                <ContentPresenter Margin="16,0,12,0"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource Ink}"/>
+                    <Setter Property="Background" Value="#202722"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#29342D"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="PrimaryButton" TargetType="Button">
