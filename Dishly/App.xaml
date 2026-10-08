@@ -1,0 +1,32 @@
+<Application x:Class="Dishly.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="Ink" Color="#F5F1E8"/>
+        <SolidColorBrush x:Key="MutedInk" Color="#AFA99D"/>
+        <SolidColorBrush x:Key="Canvas" Color="#111412"/>
+        <SolidColorBrush x:Key="Panel" Color="#171B18"/>
+        <SolidColorBrush x:Key="Panel2" Color="#1D231F"/>
+        <SolidColorBrush x:Key="Accent" Color="#D8894A"/>
+        <SolidColorBrush x:Key="AccentSoft" Color="#3A281E"/>
+        <SolidColorBrush x:Key="Leaf" Color="#87A873"/>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource Ink}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="14,10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="12">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4,0"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>
