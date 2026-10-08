@@ -7,143 +7,525 @@
         Background="{StaticResource Canvas}"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <Style x:Key="NavButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="Margin" Value="0,3,0,3"/>
+        <Style x:Key="NavButton" TargetType="Button">
             <Setter Property="Foreground" Value="{StaticResource MutedInk}"/>
             <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="16,11"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="MinHeight" Value="60"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1E2521"/>
                     <Setter Property="Foreground" Value="{StaticResource Ink}"/>
-                    <Setter Property="Background" Value="#222A25"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Foreground" Value="#17120E"/>
+            <Setter Property="Background" Value="{StaticResource Accent}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="11" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="GhostButton" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource Ink}"/>
+            <Setter Property="Background" Value="#232A26"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="14,9"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="FieldStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="{StaticResource Ink}"/>
+            <Setter Property="Background" Value="{StaticResource Panel}"/>
+            <Setter Property="BorderBrush" Value="#2A312D"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="13,10"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
         <Style x:Key="RecipeCard" TargetType="Border">
             <Setter Property="Background" Value="{StaticResource Panel}"/>
             <Setter Property="CornerRadius" Value="20"/>
             <Setter Property="Padding" Value="18"/>
-            <Setter Property="Margin" Value="0,0,14,0"/>
+            <Setter Property="Margin" Value="0,0,14,14"/>
+            <Setter Property="Width" Value="260"/>
         </Style>
     </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="26"/>
+            <RowDefinition Height="24"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Grid.RowSpan="2" Background="#0D100E" Padding="22,26">
+        <Border Grid.RowSpan="2" Background="#0D100E" Padding="20,24">
             <DockPanel>
                 <StackPanel DockPanel.Dock="Top">
-                    <TextBlock Text="dishly" FontSize="30" FontWeight="SemiBold" Foreground="{StaticResource Ink}"/>
-                    <TextBlock Text="cook something memorable" Margin="1,2,0,26" Foreground="{StaticResource MutedInk}" FontSize="11"/>
-                    <Button Style="{StaticResource NavButton}" Content="Home"/>
-                    <Button Style="{StaticResource NavButton}" Content="Discover"/>
-                    <Button Style="{StaticResource NavButton}" Content="Favorites"/>
-                    <Button Style="{StaticResource NavButton}" Content="Shopping list"/>
-                    <Button Style="{StaticResource NavButton}" Content="My recipes"/>
+                    <TextBlock Text="dishly"
+                               FontSize="32"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource Ink}"/>
+                    <TextBlock Text="cook something memorable"
+                               Margin="1,3,0,26"
+                               Foreground="{StaticResource MutedInk}"
+                               FontSize="11"/>
+
+                    <Button x:Name="NavHomeButton" Style="{StaticResource NavButton}" Click="Home_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="01" Foreground="{StaticResource Accent}" FontWeight="SemiBold"/>
+                            <TextBlock Grid.Column="1" Text="Home" FontWeight="SemiBold"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="NavDiscoverButton" Style="{StaticResource NavButton}" Click="Discover_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="02" Foreground="{StaticResource MutedInk}" FontWeight="SemiBold"/>
+                            <TextBlock Grid.Column="1" Text="Discover"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="NavFavoritesButton" Style="{StaticResource NavButton}" Click="Favorites_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="03" Foreground="{StaticResource MutedInk}" FontWeight="SemiBold"/>
+                            <TextBlock Grid.Column="1" Text="Favorites"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="NavShoppingButton" Style="{StaticResource NavButton}" Click="Shopping_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="04" Foreground="{StaticResource MutedInk}" FontWeight="SemiBold"/>
+                            <TextBlock Grid.Column="1" Text="Shopping list"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="NavMyRecipesButton" Style="{StaticResource NavButton}" Click="MyRecipes_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="05" Foreground="{StaticResource MutedInk}" FontWeight="SemiBold"/>
+                            <TextBlock Grid.Column="1" Text="My recipes"/>
+                        </Grid>
+                    </Button>
                 </StackPanel>
-                <StackPanel DockPanel.Dock="Bottom" Margin="0,30,0,0">
-                    <Border Background="#1A1E1B" CornerRadius="16" Padding="14">
+
+                <StackPanel DockPanel.Dock="Bottom" Margin="0,20,0,0">
+                    <Border Background="#171C19" CornerRadius="14" Padding="13">
                         <StackPanel>
-                            <TextBlock Text="Kitchen tip" Foreground="{StaticResource Accent}" FontWeight="SemiBold" FontSize="12"/>
-                            <TextBlock Text="Prep your ingredients before the pan gets hot." TextWrapping="Wrap" Foreground="{StaticResource MutedInk}" Margin="0,7,0,0" FontSize="12"/>
+                            <TextBlock Text="Dishly kitchen"
+                                       Foreground="{StaticResource Accent}"
+                                       FontWeight="SemiBold"
+                                       FontSize="12"/>
+                            <TextBlock Text="Your recipes, favorites and shopping list in one place."
+                                       TextWrapping="Wrap"
+                                       Foreground="{StaticResource MutedInk}"
+                                       Margin="0,6,0,0"
+                                       FontSize="11"/>
                         </StackPanel>
                     </Border>
-                    <TextBlock Text="v0.1 • Dishly" Foreground="#656962" FontSize="10" Margin="2,16,0,0"/>
+                    <TextBlock Text="v0.2 • Dishly"
+                               Foreground="#656962"
+                               FontSize="10"
+                               Margin="2,14,0,0"/>
                 </StackPanel>
             </DockPanel>
         </Border>
 
-        <Grid Grid.Column="1" Margin="34,30,34,18">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <Grid x:Name="ContentRoot" Grid.Column="1" Margin="34,28,34,16">
+            <Grid x:Name="HomePage">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
-                <StackPanel>
-                    <TextBlock Text="Good food starts here." FontSize="34" FontWeight="SemiBold" Foreground="{StaticResource Ink}"/>
-                    <TextBlock Text="Discover recipes that fit your mood, your time, and your kitchen." Margin="0,6,0,0" Foreground="{StaticResource MutedInk}" FontSize="14"/>
-                </StackPanel>
-                <Border HorizontalAlignment="Right" Width="280" Background="{StaticResource Panel}" CornerRadius="14" Padding="14,10">
-                    <DockPanel>
-                        <TextBlock Text="⌕" FontSize="20" Foreground="{StaticResource MutedInk}" Margin="2,0,10,0"/>
-                        <TextBlock Text="Search recipes, ingredients..." VerticalAlignment="Center" Foreground="#777C74"/>
-                    </DockPanel>
+                <Grid Grid.Row="0">
+                    <StackPanel>
+                        <TextBlock Text="Good food starts here."
+                                   FontSize="34"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource Ink}"/>
+                        <TextBlock Text="Discover recipes that fit your mood, your time, and your kitchen."
+                                   Margin="0,6,0,0"
+                                   Foreground="{StaticResource MutedInk}"
+                                   FontSize="14"/>
+                    </StackPanel>
+                    <Button HorizontalAlignment="Right"
+                            Style="{StaticResource GhostButton}"
+                            Content="Discover recipes"
+                            Click="Discover_Click"/>
+                </Grid>
+
+                <Border x:Name="HeroCard"
+                        Grid.Row="1"
+                        Margin="0,26,0,24"
+                        CornerRadius="24"
+                        Padding="28">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#2B221B" Offset="0"/>
+                            <GradientStop Color="#1B2520" Offset="0.62"/>
+                            <GradientStop Color="#15201A" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid>
+                        <Ellipse Width="220" Height="220" Fill="#3A2417" Opacity="0.35"
+                                 HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-85,-45,0"/>
+                        <Ellipse Width="150" Height="150" Fill="#314A32" Opacity="0.24"
+                                 HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,110,-100"/>
+                        <StackPanel Width="560">
+                            <TextBlock Text="TODAY'S FEATURE"
+                                       Foreground="{StaticResource Accent}"
+                                       FontSize="12"
+                                       FontWeight="Bold"/>
+                            <TextBlock Text="Creamy garlic pasta"
+                                       Foreground="White"
+                                       FontSize="31"
+                                       FontWeight="SemiBold"
+                                       Margin="0,9,0,0"/>
+                            <TextBlock Text="Silky sauce, roasted garlic and parmesan. Comfort food without the fuss."
+                                       TextWrapping="Wrap"
+                                       Foreground="#C8C1B6"
+                                       FontSize="14"
+                                       Margin="0,8,0,18"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource PrimaryButton}"
+                                        Content="Open recipe"
+                                        Click="FeaturedRecipe_Click"
+                                        Margin="0,0,9,0"/>
+                                <Border Background="#2B342E" CornerRadius="10" Padding="13,8">
+                                    <TextBlock Text="28 min  •  Easy" Foreground="#DDD8CF"/>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
                 </Border>
+
+                <DockPanel Grid.Row="2" Margin="0,0,0,12">
+                    <TextBlock DockPanel.Dock="Left"
+                               Text="Popular this week"
+                               FontSize="21"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource Ink}"/>
+                </DockPanel>
+
+                <ScrollViewer Grid.Row="3"
+                              HorizontalScrollBarVisibility="Hidden"
+                              VerticalScrollBarVisibility="Auto">
+                    <WrapPanel x:Name="HomeRecipesPanel"/>
+                </ScrollViewer>
             </Grid>
 
-            <Border x:Name="HeroCard" Grid.Row="1" Margin="0,26,0,24" CornerRadius="24" Padding="28">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#2B221B" Offset="0"/>
-                        <GradientStop Color="#1B2520" Offset="0.62"/>
-                        <GradientStop Color="#15201A" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-                <Grid>
-                    <Ellipse Width="220" Height="220" Fill="#3A2417" Opacity="0.35" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-85,-45,0"/>
-                    <Ellipse Width="150" Height="150" Fill="#314A32" Opacity="0.24" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,110,-100"/>
-                    <StackPanel Width="540">
-                        <TextBlock Text="TODAY'S FEATURE" Foreground="{StaticResource Accent}" FontSize="12" FontWeight="Bold"/>
-                        <TextBlock Text="Creamy garlic pasta" Foreground="White" FontSize="31" FontWeight="SemiBold" Margin="0,9,0,0"/>
-                        <TextBlock Text="Silky sauce, roasted garlic and parmesan. Comfort food without the fuss." TextWrapping="Wrap" Foreground="#C8C1B6" FontSize="14" Margin="0,8,0,18"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Border Background="{StaticResource Accent}" CornerRadius="10" Padding="13,8" Margin="0,0,9,0">
-                                <TextBlock Text="Open recipe" Foreground="#17120E" FontWeight="SemiBold"/>
-                            </Border>
-                            <Border Background="#2B342E" CornerRadius="10" Padding="13,8">
-                                <TextBlock Text="28 min  •  Easy" Foreground="#DDD8CF"/>
-                            </Border>
-                        </StackPanel>
-                    </StackPanel>
-                </Grid>
-            </Border>
+            <Grid x:Name="DiscoverPage" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <DockPanel Grid.Row="2" Margin="0,0,0,14">
-                <TextBlock DockPanel.Dock="Left" Text="Popular this week" FontSize="21" FontWeight="SemiBold" Foreground="{StaticResource Ink}"/>
-                <TextBlock DockPanel.Dock="Right" Text="See all" Foreground="{StaticResource Accent}" VerticalAlignment="Bottom"/>
-            </DockPanel>
-
-            <ScrollViewer Grid.Row="3" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                <StackPanel Orientation="Horizontal">
-                    <Border Style="{StaticResource RecipeCard}" Width="235">
-                        <StackPanel>
-                            <Border Height="128" CornerRadius="14" Background="#303832">
-                                <TextBlock Text="PASTA" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#B6C1B3" FontWeight="SemiBold" />
-                            </Border>
-                            <TextBlock Text="Lemon herb pasta" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource Ink}" Margin="0,13,0,4"/>
-                            <TextBlock Text="20 min  •  Vegetarian" Foreground="{StaticResource MutedInk}" FontSize="11"/>
-                        </StackPanel>
-                    </Border>
-                    <Border Style="{StaticResource RecipeCard}" Width="235">
-                        <StackPanel>
-                            <Border Height="128" CornerRadius="14" Background="#39342A">
-                                <TextBlock Text="BOWL" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#C7B89E" FontWeight="SemiBold"/>
-                            </Border>
-                            <TextBlock Text="Sesame chicken bowl" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource Ink}" Margin="0,13,0,4"/>
-                            <TextBlock Text="35 min  •  High protein" Foreground="{StaticResource MutedInk}" FontSize="11"/>
-                        </StackPanel>
-                    </Border>
-                    <Border Style="{StaticResource RecipeCard}" Width="235">
-                        <StackPanel>
-                            <Border Height="128" CornerRadius="14" Background="#26322A">
-                                <TextBlock Text="BAKE" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#AFC0AE" FontWeight="SemiBold"/>
-                            </Border>
-                            <TextBlock Text="Honey roast carrots" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource Ink}" Margin="0,13,0,4"/>
-                            <TextBlock Text="30 min  •  Easy" Foreground="{StaticResource MutedInk}" FontSize="11"/>
-                        </StackPanel>
-                    </Border>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="Discover"
+                               FontSize="34"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource Ink}"/>
+                    <TextBlock Text="Search recipes by name, category or ingredients."
+                               Margin="0,6,0,18"
+                               Foreground="{StaticResource MutedInk}"
+                               FontSize="14"/>
+                    <Grid>
+                        <TextBox x:Name="DiscoverSearchBox"
+                                 Style="{StaticResource FieldStyle}"
+                                 Height="46"
+                                 TextChanged="DiscoverSearchBox_TextChanged"/>
+                        <TextBlock Text="Search recipes, ingredients..."
+                                   IsHitTestVisible="False"
+                                   VerticalAlignment="Center"
+                                   Margin="14,0,0,0"
+                                   Foreground="#6F756F"/>
+                    </Grid>
                 </StackPanel>
-            </ScrollViewer>
+
+                <TextBlock x:Name="DiscoverCountText"
+                           Grid.Row="1"
+                           Margin="0,17,0,11"
+                           Foreground="{StaticResource MutedInk}"
+                           FontSize="12"/>
+
+                <ScrollViewer Grid.Row="2"
+                              HorizontalScrollBarVisibility="Hidden"
+                              VerticalScrollBarVisibility="Auto">
+                    <WrapPanel x:Name="DiscoverResultsPanel"/>
+                </ScrollViewer>
+            </Grid>
+
+            <Grid x:Name="FavoritesPage" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="Favorites"
+                               FontSize="34"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource Ink}"/>
+                    <TextBlock x:Name="FavoritesSubtitle"
+                               Text="Recipes you saved for later."
+                               Margin="0,6,0,18"
+                               Foreground="{StaticResource MutedInk}"
+                               FontSize="14"/>
+                </StackPanel>
+                <ScrollViewer Grid.Row="1"
+                              HorizontalScrollBarVisibility="Hidden"
+                              VerticalScrollBarVisibility="Auto">
+                    <WrapPanel x:Name="FavoritesResultsPanel"/>
+                </ScrollViewer>
+            </Grid>
+
+            <Grid x:Name="ShoppingPage" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="Shopping list"
+                               FontSize="34"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource Ink}"/>
+                    <TextBlock Text="Keep the ingredients you need close at hand."
+                               Margin="0,6,0,18"
+                               Foreground="{StaticResource MutedInk}"
+                               FontSize="14"/>
+                </StackPanel>
+
+                <Grid Grid.Row="1" Margin="0,0,0,18">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="ShoppingInput"
+                             Grid.Column="0"
+                             Style="{StaticResource FieldStyle}"
+                             Height="44"/>
+                    <Button Grid.Column="1"
+                            Style="{StaticResource PrimaryButton}"
+                            Content="Add item"
+                            Margin="10,0,8,0"
+                            Click="AddShoppingItem_Click"/>
+                    <Button Grid.Column="2"
+                            Style="{StaticResource GhostButton}"
+                            Content="Clear completed"
+                            Click="ClearCompleted_Click"/>
+                </Grid>
+
+                <ScrollViewer Grid.Row="2"
+                              HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="ShoppingItemsPanel"/>
+                </ScrollViewer>
+            </Grid>
+
+            <Grid x:Name="MyRecipesPage" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="My recipes"
+                               FontSize="34"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource Ink}"/>
+                    <TextBlock Text="Create your own recipes and keep them in Dishly."
+                               Margin="0,6,0,18"
+                               Foreground="{StaticResource MutedInk}"
+                               FontSize="14"/>
+                </StackPanel>
+
+                <Border Grid.Row="1"
+                        Background="{StaticResource Panel}"
+                        CornerRadius="18"
+                        Padding="18"
+                        Margin="0,0,0,18">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.1*"/>
+                            <ColumnDefinition Width="0.55*"/>
+                            <ColumnDefinition Width="1.4*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                            <TextBlock Text="Recipe name" Foreground="{StaticResource MutedInk}" FontSize="11" Margin="0,0,0,6"/>
+                            <TextBox x:Name="MyRecipeTitleBox" Style="{StaticResource FieldStyle}" Height="42"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="0,0,10,0">
+                            <TextBlock Text="Minutes" Foreground="{StaticResource MutedInk}" FontSize="11" Margin="0,0,0,6"/>
+                            <TextBox x:Name="MyRecipeMinutesBox" Style="{StaticResource FieldStyle}" Height="42"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Margin="0,0,12,0">
+                            <TextBlock Text="Description" Foreground="{StaticResource MutedInk}" FontSize="11" Margin="0,0,0,6"/>
+                            <TextBox x:Name="MyRecipeDescriptionBox" Style="{StaticResource FieldStyle}" Height="42"/>
+                        </StackPanel>
+                        <Button Grid.Column="3"
+                                VerticalAlignment="Bottom"
+                                Style="{StaticResource PrimaryButton}"
+                                Content="Add recipe"
+                                Click="AddMyRecipe_Click"/>
+                    </Grid>
+                </Border>
+
+                <ScrollViewer Grid.Row="2"
+                              HorizontalScrollBarVisibility="Hidden"
+                              VerticalScrollBarVisibility="Auto">
+                    <WrapPanel x:Name="MyRecipesResultsPanel"/>
+                </ScrollViewer>
+            </Grid>
+
+            <Border x:Name="RecipeDetailOverlay"
+                    Visibility="Collapsed"
+                    Background="#F20C100D"
+                    CornerRadius="24"
+                    Padding="26">
+                <Border Background="{StaticResource Panel2}"
+                        CornerRadius="22"
+                        Padding="26"
+                        MaxWidth="820">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <StackPanel>
+                                <TextBlock Text="RECIPE"
+                                           Foreground="{StaticResource Accent}"
+                                           FontSize="11"
+                                           FontWeight="Bold"/>
+                                <TextBlock x:Name="RecipeDetailTitle"
+                                           FontSize="30"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource Ink}"
+                                           Margin="0,5,0,0"/>
+                            </StackPanel>
+                            <Button HorizontalAlignment="Right"
+                                    Style="{StaticResource GhostButton}"
+                                    Content="Close"
+                                    Click="CloseRecipeDetail_Click"/>
+                        </Grid>
+
+                        <TextBlock x:Name="RecipeDetailMeta"
+                                   Grid.Row="1"
+                                   Foreground="{StaticResource MutedInk}"
+                                   Margin="0,8,0,16"/>
+
+                        <TextBlock x:Name="RecipeDetailDescription"
+                                   Grid.Row="2"
+                                   TextWrapping="Wrap"
+                                   Foreground="#D2CEC6"
+                                   FontSize="14"/>
+
+                        <Grid Grid.Row="3" Margin="0,20,0,20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.9*"/>
+                                <ColumnDefinition Width="1.1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="{StaticResource Panel}" CornerRadius="15" Padding="16" Margin="0,0,10,0">
+                                <StackPanel>
+                                    <TextBlock Text="Ingredients" Foreground="{StaticResource Accent}" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="RecipeDetailIngredients"
+                                               TextWrapping="Wrap"
+                                               Foreground="{StaticResource Ink}"
+                                               Margin="0,9,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" Background="{StaticResource Panel}" CornerRadius="15" Padding="16" Margin="10,0,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="Steps" Foreground="{StaticResource Accent}" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="RecipeDetailSteps"
+                                               TextWrapping="Wrap"
+                                               Foreground="{StaticResource Ink}"
+                                               Margin="0,9,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button x:Name="RecipeFavoriteButton"
+                                    Style="{StaticResource GhostButton}"
+                                    Content="Save favorite"
+                                    Click="RecipeFavorite_Click"
+                                    Margin="0,0,8,0"/>
+                            <Button Style="{StaticResource PrimaryButton}"
+                                    Content="Start cooking"
+                                    Click="StartCooking_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Border>
         </Grid>
     </Grid>
 </Window>
