@@ -127,7 +127,7 @@
                     <Border Style="{StaticResource RecipeCard}" Width="235">
                         <StackPanel>
                             <Border Height="128" CornerRadius="14" Background="#39342A">
-                                <TextBlock Text="BOWL" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#C7B89E" FontWeight="SemiBold" LetterSpacing="2"/>
+                                <TextBlock Text="BOWL" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#C7B89E" FontWeight="SemiBold"/>
                             </Border>
                             <TextBlock Text="Sesame chicken bowl" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource Ink}" Margin="0,13,0,4"/>
                             <TextBlock Text="35 min  •  High protein" Foreground="{StaticResource MutedInk}" FontSize="11"/>
@@ -136,7 +136,7 @@
                     <Border Style="{StaticResource RecipeCard}" Width="235">
                         <StackPanel>
                             <Border Height="128" CornerRadius="14" Background="#26322A">
-                                <TextBlock Text="BAKE" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#AFC0AE" FontWeight="SemiBold" LetterSpacing="2"/>
+                                <TextBlock Text="BAKE" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#AFC0AE" FontWeight="SemiBold"/>
                             </Border>
                             <TextBlock Text="Honey roast carrots" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource Ink}" Margin="0,13,0,4"/>
                             <TextBlock Text="30 min  •  Easy" Foreground="{StaticResource MutedInk}" FontSize="11"/>
