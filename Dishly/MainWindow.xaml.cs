@@ -332,15 +332,19 @@ public partial class MainWindow : Window
 
         var stack = new StackPanel();
 
+        var imageBrush = new LinearGradientBrush
+        {
+            StartPoint = new Point(0, 0),
+            EndPoint = new Point(1, 1)
+        };
+        imageBrush.GradientStops.Add(new GradientStop(ColorForCategory(recipe.Category), 0));
+        imageBrush.GradientStops.Add(new GradientStop(Color.FromRgb(25, 32, 28), 1));
+
         var image = new Border
         {
             Height = 118,
             CornerRadius = new CornerRadius(15),
-            Background = new LinearGradientBrush(
-                ColorForCategory(recipe.Category),
-                Color.FromRgb(25, 32, 28),
-                new Point(0, 0),
-                new Point(1, 1))
+            Background = imageBrush
         };
 
         image.Child = new StackPanel
