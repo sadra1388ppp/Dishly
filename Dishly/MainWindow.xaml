@@ -81,7 +81,7 @@
                 </Border>
             </Grid>
 
-            <Border Grid.Row="1" Margin="0,26,0,24" CornerRadius="24" Padding="28" Clip="{Binding RelativeSource={RelativeSource Self}}">
+            <Border x:Name="HeroCard" Grid.Row="1" Margin="0,26,0,24" CornerRadius="24" Padding="28">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                         <GradientStop Color="#2B221B" Offset="0"/>
@@ -118,7 +118,7 @@
                     <Border Style="{StaticResource RecipeCard}" Width="235">
                         <StackPanel>
                             <Border Height="128" CornerRadius="14" Background="#303832">
-                                <TextBlock Text="PASTA" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#B6C1B3" FontWeight="SemiBold" LetterSpacing="2"/>
+                                <TextBlock Text="PASTA" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#B6C1B3" FontWeight="SemiBold" />
                             </Border>
                             <TextBlock Text="Lemon herb pasta" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource Ink}" Margin="0,13,0,4"/>
                             <TextBlock Text="20 min  •  Vegetarian" Foreground="{StaticResource MutedInk}" FontSize="11"/>
