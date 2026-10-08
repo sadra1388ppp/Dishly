@@ -677,97 +677,282 @@
             <Grid x:Name="MyRecipesPage"
                   Visibility="Collapsed">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
 
-                <StackPanel Grid.Row="0">
-                    <TextBlock Text="My recipes"
-                               Foreground="{StaticResource Ink}"
-                               FontSize="34"
-                               FontWeight="SemiBold"/>
-                    <TextBlock Text="Create your own recipes and keep your ideas in one place."
-                               Foreground="{StaticResource MutedInk}"
-                               FontSize="14"
-                               Margin="0,6,0,18"/>
-                </StackPanel>
+                    <StackPanel>
 
-                <Border Grid.Row="1"
-                        Background="{StaticResource Panel}"
-                        CornerRadius="18"
-                        Padding="18"
-                        Margin="0,0,0,18">
+                        <Grid Margin="0,0,0,22">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition MinWidth="170" Width="1.2*"/>
-                            <ColumnDefinition MinWidth="100" Width="0.8*"/>
-                            <ColumnDefinition MinWidth="190" Width="1.5*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="My recipes"
+                                           Foreground="{StaticResource Ink}"
+                                           FontSize="34"
+                                           FontWeight="SemiBold"/>
 
-                        <StackPanel Grid.Column="0"
-                                    Margin="0,0,10,0">
-                            <TextBlock Text="Recipe name"
-                                       Foreground="{StaticResource MutedInk}"
-                                       FontSize="11"
-                                       Margin="0,0,0,6"/>
-                            <TextBox x:Name="MyRecipeTitleBox"
-                                     Style="{StaticResource FieldStyle}"
-                                     Height="42"/>
-                        </StackPanel>
+                                <TextBlock Text="Build your personal recipe book, one dish at a time."
+                                           Foreground="{StaticResource MutedInk}"
+                                           FontSize="14"
+                                           Margin="0,6,0,0"
+                                           TextWrapping="Wrap"/>
+                            </StackPanel>
 
-                        <StackPanel Grid.Column="1"
-                                    Margin="0,0,10,0">
-                            <TextBlock Text="Minutes"
-                                       Foreground="{StaticResource MutedInk}"
-                                       FontSize="11"
-                                       Margin="0,0,0,6"/>
-                            <TextBox x:Name="MyRecipeMinutesBox"
-                                     Style="{StaticResource FieldStyle}"
-                                     Height="42"/>
-                        </StackPanel>
+                            <Border Grid.Column="1"
+                                    Background="{StaticResource Panel}"
+                                    CornerRadius="13"
+                                    Padding="15,9"
+                                    VerticalAlignment="Top">
 
-                        <StackPanel Grid.Column="2"
-                                    Margin="0,0,12,0">
-                            <TextBlock Text="Description"
-                                       Foreground="{StaticResource MutedInk}"
-                                       FontSize="11"
-                                       Margin="0,0,0,6"/>
-                            <TextBox x:Name="MyRecipeDescriptionBox"
-                                     Style="{StaticResource FieldStyle}"
-                                     Height="42"/>
-                        </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="YOUR COLLECTION"
+                                               Foreground="{StaticResource MutedInk}"
+                                               FontSize="9"
+                                               FontWeight="Bold"
+                                               VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="MyRecipesCountText"
+                                               Text="0"
+                                               Foreground="{StaticResource Accent}"
+                                               FontSize="16"
+                                               FontWeight="SemiBold"
+                                               Margin="9,0,0,0"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
 
-                        <Button Grid.Column="3"
-                                VerticalAlignment="Bottom"
-                                Style="{StaticResource PrimaryButton}"
-                                Content="Add recipe"
-                                Click="AddMyRecipe_Click"/>
-                    </Grid>
-                </Border>
+                        <Border Background="{StaticResource Panel}"
+                                CornerRadius="22"
+                                Padding="24"
+                                Margin="0,0,0,20">
 
-                <Border Grid.Row="2"
-                        Background="{StaticResource Panel}"
-                        CornerRadius="20"
-                        Padding="30"
-                        MaxWidth="650"
-                        MaxHeight="190">
+                            <StackPanel>
 
-                    <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="No recipes yet."
-                                   Foreground="{StaticResource Ink}"
-                                   FontSize="21"
-                                   FontWeight="SemiBold"/>
-                        <TextBlock Text="Create your first recipe above and it will appear here."
-                                   Foreground="{StaticResource MutedInk}"
-                                   FontSize="13"
-                                   Margin="0,7,0,0"/>
+                                <Grid Margin="0,0,0,20">
+                                    <StackPanel>
+                                        <TextBlock Text="Create a new recipe"
+                                                   Foreground="{StaticResource Ink}"
+                                                   FontSize="21"
+                                                   FontWeight="SemiBold"/>
+
+                                        <TextBlock Text="Give your dish a name, describe it, then add the ingredients and steps."
+                                                   Foreground="{StaticResource MutedInk}"
+                                                   FontSize="12"
+                                                   Margin="0,5,0,0"
+                                                   TextWrapping="Wrap"/>
+                                    </StackPanel>
+
+                                    <Border HorizontalAlignment="Right"
+                                            Background="{StaticResource AccentSoft}"
+                                            CornerRadius="10"
+                                            Padding="10,6">
+
+                                        <TextBlock Text="RECIPE EDITOR"
+                                                   Foreground="{StaticResource Accent}"
+                                                   FontSize="9"
+                                                   FontWeight="Bold"/>
+                                    </Border>
+                                </Grid>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.25*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0"
+                                                Margin="0,0,16,0">
+
+                                        <TextBlock Text="Recipe name"
+                                                   Foreground="{StaticResource MutedInk}"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Margin="0,0,0,6"/>
+
+                                        <TextBox x:Name="MyRecipeTitleBox"
+                                                 Style="{StaticResource FieldStyle}"
+                                                 Height="44"
+                                                 ToolTip="Example: Creamy garlic pasta"/>
+
+                                        <TextBlock Text="Description"
+                                                   Foreground="{StaticResource MutedInk}"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Margin="0,15,0,6"/>
+
+                                        <TextBox x:Name="MyRecipeDescriptionBox"
+                                                 Style="{StaticResource FieldStyle}"
+                                                 Height="92"
+                                                 AcceptsReturn="True"
+                                                 TextWrapping="Wrap"
+                                                 VerticalContentAlignment="Top"
+                                                 ToolTip="What makes this dish special?"/>
+
+                                        <Grid Margin="0,15,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel Grid.Column="0"
+                                                        Margin="0,0,7,0">
+                                                <TextBlock Text="Category"
+                                                           Foreground="{StaticResource MutedInk}"
+                                                           FontSize="11"
+                                                           FontWeight="SemiBold"
+                                                           Margin="0,0,0,6"/>
+
+                                                <ComboBox x:Name="MyRecipeCategoryBox"
+                                                          Height="42"
+                                                          Foreground="{StaticResource Ink}"
+                                                          Background="{StaticResource Panel2}"
+                                                          BorderBrush="#2A312D"
+                                                          BorderThickness="1"
+                                                          Padding="10,0"
+                                                          SelectedIndex="0">
+                                                    <ComboBoxItem Content="Main course"/>
+                                                    <ComboBoxItem Content="Breakfast"/>
+                                                    <ComboBoxItem Content="Dessert"/>
+                                                    <ComboBoxItem Content="Snack"/>
+                                                    <ComboBoxItem Content="Drink"/>
+                                                </ComboBox>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Column="1"
+                                                        Margin="7,0">
+                                                <TextBlock Text="Time"
+                                                           Foreground="{StaticResource MutedInk}"
+                                                           FontSize="11"
+                                                           FontWeight="SemiBold"
+                                                           Margin="0,0,0,6"/>
+
+                                                <TextBox x:Name="MyRecipeMinutesBox"
+                                                         Style="{StaticResource FieldStyle}"
+                                                         Height="42"/>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Column="2"
+                                                        Margin="7,0,0,0">
+                                                <TextBlock Text="Servings"
+                                                           Foreground="{StaticResource MutedInk}"
+                                                           FontSize="11"
+                                                           FontWeight="SemiBold"
+                                                           Margin="0,0,0,6"/>
+
+                                                <TextBox x:Name="MyRecipeServingsBox"
+                                                         Style="{StaticResource FieldStyle}"
+                                                         Height="42"/>
+                                            </StackPanel>
+                                        </Grid>
+
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1">
+
+                                        <TextBlock Text="Ingredients"
+                                                   Foreground="{StaticResource MutedInk}"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Margin="0,0,0,6"/>
+
+                                        <TextBox x:Name="MyRecipeIngredientsBox"
+                                                 Style="{StaticResource FieldStyle}"
+                                                 Height="126"
+                                                 AcceptsReturn="True"
+                                                 TextWrapping="Wrap"
+                                                 VerticalContentAlignment="Top"
+                                                 ToolTip="Add one ingredient per line"/>
+
+                                        <TextBlock Text="Cooking steps"
+                                                   Foreground="{StaticResource MutedInk}"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Margin="0,15,0,6"/>
+
+                                        <TextBox x:Name="MyRecipeInstructionsBox"
+                                                 Style="{StaticResource FieldStyle}"
+                                                 Height="126"
+                                                 AcceptsReturn="True"
+                                                 TextWrapping="Wrap"
+                                                 VerticalContentAlignment="Top"
+                                                 ToolTip="Write one step per line"/>
+
+                                    </StackPanel>
+                                </Grid>
+
+                                <Border Height="1"
+                                        Background="#2A312D"
+                                        Margin="0,22,0,18"/>
+
+                                <DockPanel LastChildFill="False">
+
+                                    <TextBlock x:Name="MyRecipeValidationText"
+                                               Text="All fields are optional except the recipe name."
+                                               Foreground="{StaticResource MutedInk}"
+                                               FontSize="11"
+                                               VerticalAlignment="Center"
+                                               TextWrapping="Wrap"/>
+
+                                    <StackPanel DockPanel.Dock="Right"
+                                                Orientation="Horizontal">
+
+                                        <Button Style="{StaticResource GhostButton}"
+                                                Content="Clear"
+                                                Click="ClearMyRecipe_Click"
+                                                Margin="0,0,8,0"/>
+
+                                        <Button Style="{StaticResource PrimaryButton}"
+                                                Content="Save recipe"
+                                                Click="AddMyRecipe_Click"/>
+                                    </StackPanel>
+                                </DockPanel>
+
+                            </StackPanel>
+                        </Border>
+
+                        <DockPanel Margin="0,0,0,12">
+                            <StackPanel>
+                                <TextBlock Text="Your collection"
+                                           Foreground="{StaticResource Ink}"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"/>
+
+                                <TextBlock Text="Your saved recipes will appear here."
+                                           Foreground="{StaticResource MutedInk}"
+                                           FontSize="12"
+                                           Margin="0,3,0,0"/>
+                            </StackPanel>
+                        </DockPanel>
+
+                        <Border x:Name="MyRecipesEmptyState"
+                                Background="{StaticResource Panel}"
+                                CornerRadius="20"
+                                Padding="28"
+                                Margin="0,0,0,18">
+
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Your recipe book is empty"
+                                           Foreground="{StaticResource Ink}"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"/>
+
+                                <TextBlock Text="Create your first recipe above. It will appear here as a clean Dishly card."
+                                           Foreground="{StaticResource MutedInk}"
+                                           FontSize="13"
+                                           Margin="0,7,0,0"
+                                           TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+
+                        <WrapPanel x:Name="MyRecipesCardsPanel"
+                                   Margin="0,0,0,20"/>
+
                     </StackPanel>
-
-                </Border>
+                </ScrollViewer>
 
             </Grid>
 
